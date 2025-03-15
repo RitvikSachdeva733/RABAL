@@ -177,4 +177,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+
+    // Fix: Force navigation to home.html using JavaScript
+    const homeLinks = document.querySelectorAll("a[href='home.html']");
+    homeLinks.forEach(link => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault(); // Prevent default behavior
+            window.location.assign("home.html"); // Force navigation
+        });
+    });
 });
