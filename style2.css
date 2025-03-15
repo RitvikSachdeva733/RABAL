@@ -1,0 +1,921 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato&display=swap');
+
+html {
+    scroll-behavior: smooth;
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    color: #333;
+    width: 100%;
+    background-color: #faf3ef;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    transition: opacity 1s ease-out; /* Smooth transition for body fade-in */
+}
+
+/* Loader Style */
+/* .loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8); 
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+} */
+
+/* Apple Animation Container */
+/* .apple-animation {
+    width: 80px;
+    height: 100px;
+    position: relative;
+    overflow: hidden; 
+} */
+
+/* Apple Logo Base */
+/* .apple-logo {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0; 
+    transition: opacity 1s ease-in-out;
+} */
+
+/* Keyframe animation for eating apple */
+/* @keyframes eatApple {
+    0% {
+        opacity: 1; 
+    }
+    100% {
+        opacity: 0; 
+    }
+} */
+
+/* Apply the animation */
+/* #apple-full {
+    animation: eatApple 0.7s ease-in-out forwards;
+    animation-delay: 0s; 
+}
+
+#apple-half {
+    animation: eatApple 0.7s ease-in-out forwards;
+    animation-delay: 0.7s; 
+}
+
+#apple-middle {
+    animation: eatApple 0.7s ease-in-out forwards;
+    animation-delay: 1.4s; 
+} */
+
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loader {
+    position: relative;
+    width: 20vw;
+    height: 20vw;
+    max-width: 100px;
+    max-height: 100px;
+    min-width: 50px;
+    min-height: 50px;
+}
+
+.loader-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: fade 2s infinite;
+    object-fit: contain;
+}
+
+@keyframes fade {
+    0% { opacity: 0; }
+    33% { opacity: 1; }
+    66% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+.loader-image:nth-child(2) {
+    animation-delay: 0.66s;
+}
+
+.loader-image:nth-child(3) {
+    animation-delay: 1.32s;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 480px) {
+    .loader {
+        width: 30vw;
+        height: 30vw;
+    }
+}
+
+/* Header (Navbar) */
+/* Navbar Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 50px;
+    background: rgba(0, 0, 0, 0.5);  /* Transparent background */
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.navlink li {
+    list-style-type: none;
+    display: inline;
+    margin-left: 1em;
+}
+
+
+
+
+.navlink li a {
+    text-decoration: none;
+    color: #FCECDD;
+    font-size: 18px;
+    font-weight: bold; /* Make the links bold */
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+
+/* Underline animation effect */
+.navlink li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2.4px;
+    background-color: #ffd5ae; /* Blue underline color */
+    transition: width 0.5s ease;
+}
+
+/* Hover effect for the link */
+.navlink li a:hover {
+    color: #ffd5ae; /* Change text color on hover */
+}
+
+.navlink li a:hover::after {
+    width: 100%; /* Expand underline on hover */
+}
+
+.navlink {
+    text-align: right;
+    padding-inline: .5em;
+    padding-block: 15px;
+}
+
+/* Hamburger Menu and Dropdown */
+.hamburger-menu {
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px; 
+    height: 25px; 
+    cursor: pointer;
+    z-index: 1000; 
+}
+
+.bar {
+    height: 3px;
+    background-color: #FCECDD;
+    border-radius: 2px;
+}
+
+.hamburger-dropdown {
+    display: none; 
+    position: absolute;
+    right: 10px;
+    top: 60px; 
+    background-color: rgba(252, 236, 221, 0.8);
+    border-radius: 5px;
+    padding: 10px; 
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); 
+    width: 200px; 
+    max-height: 800px; 
+    overflow-y: auto; 
+}
+
+.hamburger-dropdown.show {
+    display: block; 
+}
+
+.hamburger-dropdown li {
+    list-style: none;
+    padding-inline: 10px; 
+    padding-block: 17px; 
+    border-bottom: 1px solid white;
+}
+
+.hamburger-dropdown li:last-child {
+    border-bottom: none;
+}
+
+.hamburger-dropdown li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+.hamburger-dropdown li a:hover{
+    color: rgb(36, 36, 36);
+}
+
+@media screen and (min-width: 900px) {
+    .hamburger-menu, .bar, .hamburger-dropdown, .hamburger-dropdown.show{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .navlink{
+        display: none;
+    }
+}
+
+/* Optional: Add a shadow for the navbar for better visibility */
+header {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+}
+
+
+
+header .logo img {
+    width: 70px;  /* Adjust width as needed */
+    height: auto;  /* Keeps the aspect ratio of the image */
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    width: 90%;
+    height: auto;
+    margin: 100px auto;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 10px 2px 15px rgba(0,0,0,0.2);
+  }
+
+  .column {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .heading {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 2.6rem;
+    line-height: 1.3;
+    margin: 0;
+  }
+  
+  .heading .highlight {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    color: #ff4d00;
+    display: inline-block;
+  }
+  
+  .heading .normal {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    color: #000000;
+    display: inline-block;
+  }
+  
+  .content {
+    font-family: 'Lato', sans-serif;
+    color: #000000;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin: 2px;
+    text-align: justify;
+    font-style: italic;
+  }
+  
+  .web-link {
+    text-decoration: none;
+    color: #ff4d00;
+    font-size: 18px;
+    font-weight: bold; /* Make the links bold */
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+  @media (max-width: 1108px) {
+    
+    .heading {
+      font-size: 2.5rem;
+    }
+    
+    .content {
+      font-size: 1.1rem;
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      gap: 30px;
+      padding: 20px 15px;
+    }
+    
+    .heading {
+      font-size: 1.8rem;
+    }
+    
+    .content {
+      font-size: 1rem;
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 1170px) {
+    .container {
+        display: none;
+    }
+
+    .container2 {
+        width: 90%;
+        height: auto;
+        margin: 100px auto;
+        padding: 30px 15px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 10px 2px 15px rgba(0,0,0,0.2);
+    }
+
+    .content {
+        margin-block: 20px;
+    }
+  }
+
+  @media (min-width: 1170px) {
+    .container2 {
+        display: none;
+    }
+  }
+
+/* About*/
+
+
+.about {
+    padding: 50px 20px;
+    background-color: #ffebe1;
+    color: #333; /* Dark text color for readability */
+}
+
+.about h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #ff4d00; /* Matching with the brand's color */
+}
+
+.about p {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #555;
+}
+
+/* Products Section */
+#products {
+    padding: 40px 20px;
+    background-color: #fff8f5;
+    text-align: center;
+}
+
+#products h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #ff4d00; /* Matching with the brand's color */
+}
+
+.product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card1 {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card1:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-card1.reverse {
+    flex-direction: row-reverse;
+}
+
+.product-card {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-card.reverse {
+    flex-direction: row-reverse;
+}
+
+.product-image {
+    flex: 1;
+    min-width: 300px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-info {
+    flex: 2;
+    padding: 20px;
+    text-align: left;
+}
+
+.product-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #ff4d00;
+}
+
+.product-info p {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.benefits {
+    list-style-type: disc;
+    padding-left: 20px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.benefits li {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-card1 {
+        flex-direction: column;
+    }
+
+    .product-card1.reverse {
+        flex-direction: column;
+    }
+
+    .product-card {
+        flex-direction: column;
+    }
+
+    .product-card.reverse {
+        flex-direction: column;
+    }
+
+    .product-image {
+        min-width: 100%;
+        height: 200px;
+    }
+}
+
+.health {
+    background-color: #ffebe1;
+    padding: 50px 20px;
+    color: #333; /* Dark text color for readability */
+}
+
+.health h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #ff4d00; /* Matching with the brand's color */
+}
+
+.health p {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #000000;
+}
+
+/* Centering the list */
+.health ul {
+    list-style-type: none;
+    padding-left: 0;
+    padding-top: 10px;
+    margin: 0 auto;
+    width: 80%; /* Ensures the list is centered */
+    max-width: 850px;
+    text-align: left;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.health ul li {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px; /* Keeps points starting from the same margin */
+}
+
+.health ul li::before {
+    content: '✓'; /* Adding checkmark before each item */
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #ff4d00;
+    font-size: 1.5rem;
+    line-height: 1.8;
+}
+
+@media screen and (max-width: 768px) {
+    .about h2 {
+        font-size: 2rem;
+    }
+
+    .about p {
+        font-size: 1rem;
+        max-width: 90%;
+    }
+
+    /* Adjust text size for smaller screens */
+    .health h2 {
+        font-size: 2rem;
+    }
+
+    .health p {
+        font-size: 1rem;
+        max-width: 90%;
+    }
+
+    .health ul li {
+        font-size: 1rem;
+    }
+
+    /* Adjusting width for mobile screens */
+    .health ul {
+        width: 90%;
+    }
+
+}
+
+/* Join Us Section */
+.join-us {
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.join-card {
+    background: rgb(255, 255, 255);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 800px;
+    width: 90%;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.join-card:hover {
+    transform: translateY(-5px);
+}
+
+.join-card h2 {
+    color: #ff4d00;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.join-card p {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.join-card .btn {
+    padding: 12px 35px;
+    font-size: 1.1rem;
+    border-radius: 25px;
+    background: #ff4d00;
+    color: white;
+    text-decoration: none;
+    display: inline-block; /* Ensure button is visible */
+    z-index: 1000000;
+}
+
+.join-card .btn:hover {
+    background: #e64400;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .join-card {
+        padding: 25px;
+        width: 95%;
+    }
+    
+    .join-card h2 {
+        font-size: 1.8rem;
+    }
+    
+    .join-card p {
+        font-size: 1rem;
+    }
+    
+    .join-card .btn {
+        width: 100%;
+        padding: 12px 20px;
+    }
+}
+
+/* Services Section */
+
+
+/* Footer */
+footer {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 20px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+footer table {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+footer td {
+    padding: 15px;
+    vertical-align: top;
+    text-align: left;
+}
+
+footer h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+footer p, footer ul {
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    margin: 5px 0;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: #000000;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
+
+footer .footer-logo {
+    max-width: 100px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 1024px) {
+    footer table {
+        width: 100%;
+    }
+
+    footer td {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    footer td h3 {
+        text-align: center;
+    }
+
+    footer ul {
+        text-align: center;
+    }
+}
+
+
+
+/* Scroll Animations*/
+/* @keyframes vanish {
+    from {
+      opacity: 1;
+      scale: 1;
+    }
+    to {
+      opacity: 0;
+      scale: 0.5;
+    }
+} */
+
+@keyframes appear {
+    from {
+      opacity: 0;
+      scale: 0.5;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+}
+
+/* @keyframes vanish2 {
+    from {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+} */
+
+
+@keyframes appear2 {
+    from {
+      opacity: 0;
+      transform: translateX(-200px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+}
+
+@keyframes appear3 {
+    from {
+      opacity: 0;
+      transform: translateX(200px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+}
+
+@keyframes appear4 {
+    from {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+}
+
+.container {
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}
+
+.container2 {
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}
+
+.about h2{
+    animation: appear2 linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}
+
+.product-card1 {
+    animation: appear2 linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}
+
+
+.product-card {
+    animation: appear3 linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}
+
+.btn-container {
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}
+
+.health li {
+    animation: appear2 linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}
