@@ -158,32 +158,38 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener('scroll', onScroll); // Attach scroll event
 
     // Smooth scrolling navigation for navbar and hamburger links (only for internal sections)
-    const links = document.querySelectorAll('.navlink a, .hamburger-dropdown a');
+    // const links = document.querySelectorAll('.navlink a, .hamburger-dropdown a');
 
-    links.forEach(link => {
-        link.addEventListener('click', function (e) {
-            // Only apply smooth scroll if the link is not "home.html"
-            if (link.getAttribute('href') !== "home.html" && link.getAttribute('href') !== "products.html") {
-                e.preventDefault(); // Prevent default link behavior for internal navigation
-                const targetSection = document.querySelector(link.getAttribute('href'));
-                if (targetSection) {
-                    let offset = window.innerHeight * 0.1; // Adjust this value to control positioning
-                    let targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - offset;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
+    // links.forEach(link => {
+    //     link.addEventListener('click', function (e) {
+    //         // Only apply smooth scroll if the link is not "home.html"
+    //         if (link.getAttribute('href') !== "home.html" && link.getAttribute('href') !== "products.html") {
+    //             e.preventDefault(); // Prevent default link behavior for internal navigation
+    //             const targetSection = document.querySelector(link.getAttribute('href'));
+    //             if (targetSection) {
+    //                 let offset = window.innerHeight * 0.1; // Adjust this value to control positioning
+    //                 let targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - offset;
+    //                 window.scrollTo({
+    //                     top: targetPosition,
+    //                     behavior: 'smooth'
+    //                 });
+    //             }
+    //         }
+    //     });
+    // });
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                const offset = window.innerHeight * 0.1; // Adjust this value to control positioning
+                const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
             }
-        });
-    });
-
-    // Fix: Force navigation to home.html using JavaScript
-    const homeLinks = document.querySelectorAll("a[href='home.html']");
-    homeLinks.forEach(link => {
-        link.addEventListener("click", function (e) {
-            e.preventDefault(); // Prevent default behavior
-            window.location.assign("home.html"); // Force navigation
         });
     });
 });
