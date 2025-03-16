@@ -1270,7 +1270,7 @@ footer .footer-logo {
     animation-range: entry 0% cover 40%;
 }
 
-.about h2{
+/* .about h2{
     animation: appear2 linear;
     animation-timeline: view();
     animation-range: entry 0% cover 40%;
@@ -1280,7 +1280,7 @@ footer .footer-logo {
     animation: appear3 linear;
     animation-timeline: view();
     animation-range: entry 0% cover 40%;
-}
+} */
 
 .Mission li {
     animation: appear2 linear;
