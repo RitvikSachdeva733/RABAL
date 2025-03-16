@@ -581,6 +581,15 @@ header .logo img {
     color: #555;
 }
 
+.web-link {
+    text-decoration: none;
+    color: #ff4d00;
+    font-size: 18px;
+    font-weight: bold; /* Make the links bold */
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+
 /* .video-container {
     display: flex;
     justify-content: center;
